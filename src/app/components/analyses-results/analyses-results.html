@@ -1,165 +1,165 @@
-<mat-toolbar class="home__toolbar">
-    <span class="home__brand-name">Manager para analisis de codigo</span>
-    <span class="home__toolbar-spacer"></span>
+<mat-toolbar class="results__toolbar">
+    <span class="results__brand-name">Manager para analisis de codigo</span>
+    <span class="results__toolbar-spacer"></span>
 
-    <button class="home__button" mat-stroked-button type="button" aria-label="Exportar reporte" (click)="generateReport()">
+    <button class="results__button" mat-stroked-button type="button" aria-label="Exportar reporte"
+        (click)="generateReport()">
         <mat-icon aria-hidden="true">download</mat-icon>
         Exportar reporte
     </button>
-    <button class="home__button" mat-stroked-button type="button" aria-label="Nuevo analisis" (click)="onNewReport()">
+    <button class="results__button" mat-stroked-button type="button" aria-label="Nuevo analisis"
+        (click)="onNewReport()">
         <mat-icon aria-hidden="true">assessment</mat-icon>
         Nuevo analisis
     </button>
 </mat-toolbar>
 
-<main class="page-shell">
-    <header class="hero">
+<main class="results__page">
+    <header class="results__hero">
         <div>
-            <h1>{{ analysisResults().name }}</h1>
-            <p class="hero-copy">{{analysisResults().description ?? 'No se encontro descripcion' }}</p>
+            <h1 class="results__title">{{ analysisResults().name }}</h1>
+            <p class="results__hero-copy">{{analysisResults().description ?? 'No se encontro descripcion' }}</p>
         </div>
-        <div class="hero-meta">
+        <div class="results__hero-meta">
             <mat-chip-set aria-label="Repository metadata">
                 <mat-chip>{{ analysisResults().isRemote ? 'Remoto' : 'Local' }}</mat-chip>
                 <mat-chip>{{ analysisResults().visibility }}</mat-chip>
                 <mat-chip>{{ analysisResults().principalLanguage }} {{ analysisResults().principalLanguagePercentage
                     }}%</mat-chip></mat-chip-set>
-            <span class="location">Rama por defecto <span aria-hidden="true">·</span>{{ analysisResults().defaultBranch
+            <span class="results__location">Rama por defecto <span aria-hidden="true">·</span>{{
+                analysisResults().defaultBranch
                 }}</span>
         </div>
     </header>
 
-    <section class="stat-grid" aria-label="Analysis overview">
-        <mat-card class="stat-card accent-card">
+    <section class="results__stats" aria-label="Analysis overview">
+        <mat-card class="results__stat-card results__stat-card--accent">
             <mat-card-content>
-                <span class="stat-label">Marcos de trabajo</span>
-                <strong class="framework-number">{{ frameworkCount() }}</strong>
-                <span class="stat-detail">Detectados</span>
+                <span class="results__stat-label">Marcos de trabajo</span>
+                <strong class="results__framework-number">{{ frameworkCount() }}</strong>
+                <span class="results__stat-detail">Detectados</span>
             </mat-card-content>
         </mat-card>
-        <mat-card class="stat-card">
+        <mat-card class="results__stat-card">
             <mat-card-content>
-                <span class="stat-label">Riesgos</span>
-                <strong class="risk-number">{{ riskCount() }}</strong>
-                <span class="stat-detail">Necesitan atencion</span>
+                <span class="results__stat-label">Riesgos</span>
+                <strong class="results__risk-number">{{ riskCount() }}</strong>
+                <span class="results__stat-detail">Necesitan atencion</span>
             </mat-card-content>
         </mat-card>
-        <mat-card class="stat-card">
+        <mat-card class="results__stat-card">
             <mat-card-content>
-                <span class="stat-label">Archivos</span>
+                <span class="results__stat-label">Archivos</span>
                 <strong>{{ fileCount()}}</strong>
-                <span class="stat-detail">a través {{ analysisResults().structure.directories.length }}
+                <span class="results__stat-detail">a través {{ analysisResults().structure.directories.length }}
                     directorios</span>
             </mat-card-content>
         </mat-card>
-        <mat-card class="stat-card">
+        <mat-card class="results__stat-card">
             <mat-card-content>
-                <span class="stat-label">Patrones</span>
+                <span class="results__stat-label">Patrones</span>
                 <strong>{{ patternCount()}}</strong>
-                <span class="stat-detail">Detectados</span>
+                <span class="results__stat-detail">Detectados</span>
             </mat-card-content>
         </mat-card>
     </section>
 
-    <section class="content-grid">
-        <mat-card class="insight-card summary-card">
+    <section class="results__content">
+        <mat-card class="results__card results__card--summary">
             <mat-card-header>
                 <mat-card-title>Resumen</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p class="summary-text">{{ analysisResults().analysis.summary }}</p>
+                <p class="results__summary">{{ analysisResults().analysis.summary }}</p>
                 <mat-divider></mat-divider>
-                <div class="architecture-row">
+                <div class="results__architecture">
                     <div>
-                        <span class="stat-label">Arquitectura detectada</span>
-                        <p>{{ analysisResults().analysis.detectedArchitecture }}</p>
+                        <span class="results__stat-label">Arquitectura detectada</span>
+                        <p class="results__architecture-name">{{ analysisResults().analysis.detectedArchitecture }}</p>
                     </div>
                 </div>
             </mat-card-content>
         </mat-card>
 
-        <mat-card class="insight-card structure-card">
+        <mat-card class="results__card results__card--structure">
             <mat-card-header>
                 <mat-card-title>Tecnologias</mat-card-title>
                 <mat-card-subtitle>Tecnologias y lenguages encontrados</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 @for (item of analysisResults().languages | keyvalue; track item.key) {
-                    <mat-progress-bar
-                        mode="determinate"
-                        [value]="item.value"
-                        aria-label="language percentage">
-                    </mat-progress-bar>
-                    <div class="progress-caption">
-                        <span>{{ item.key }}</span>
-                        <strong>{{ item.value }}%</strong>
-                    </div>
+                <mat-progress-bar mode="determinate" [value]="item.value" aria-label="language percentage">
+                </mat-progress-bar>
+                <div class="results__progress-caption">
+                    <span>{{ item.key }}</span>
+                    <strong>{{ item.value }}%</strong>
+                </div>
                 }
 
             </mat-card-content>
         </mat-card>
     </section>
 
-    <mat-card class="details-card">
+    <mat-card class="results__details">
         <mat-tab-group animationDuration="180ms">
             <mat-tab label="Riesgos ({{ riskCount() }})">
-                <div class="tab-content risk-list">
+                <div class="results__tab-content results__tab-content--risks">
                     @for (risk of analysisResults().analysis.risks; track risk) {
-                        <div class="list-row">
-                            <span class="severity-marker" aria-hidden="true"></span>
-                            <span>{{ risk }}</span>
-                            <mat-icon aria-hidden="true">chevron_right</mat-icon>
-                        </div>
+                    <div class="results__list-row">
+                        <span class="results__severity-marker" aria-hidden="true"></span>
+                        <span>{{ risk }}</span>
+                        <mat-icon aria-hidden="true">chevron_right</mat-icon>
+                    </div>
                     }
                 </div>
             </mat-tab>
             <mat-tab label="Recomendaciones ({{ analysisResults().analysis.recommendations.length }})">
-                <div class="tab-content recommendation-list">
+                <div class="results__tab-content results__tab-content--recommendations">
                     @for (recommendation of analysisResults().analysis.recommendations; track recommendation) {
-                        <div class="list-row">
-                            <span class="check-marker" aria-hidden="true">✓</span>
-                            <span>{{ recommendation }}</span>
-                        </div>
+                    <div class="results__list-row">
+                        <span class="results__check-marker" aria-hidden="true">✓</span>
+                        <span>{{ recommendation }}</span>
+                    </div>
                     }
                 </div>
             </mat-tab>
             <mat-tab label="Patrones ({{ patternCount() }})">
-                <div class="tab-content pattern-list">
+                <div class="results__tab-content results__tab-content--patterns">
                     @for (pattern of analysisResults().analysis.detectedPatterns; track pattern) {
-                        <div class="pattern-item">
-                            <span class="pattern-index">{{ $index + 1 }}</span>
-                            <span>{{ pattern }}</span>
-                        </div>
+                    <div class="results__pattern">
+                        <span class="results__pattern-index">{{ $index + 1 }}</span>
+                        <span>{{ pattern }}</span>
+                    </div>
                     }
                 </div>
             </mat-tab>
-                        <mat-tab label="Directorios fuente ({{ sourcePathCount() }})">
-                <div class="tab-content pattern-list">
+            <mat-tab label="Directorios fuente ({{ sourcePathCount() }})">
+                <div class="results__tab-content results__tab-content--source-paths">
                     @for (sourcePath of analysisResults().structure.sourcePaths.slice(0, 10); track sourcePath) {
-                        <div class="pattern-item">
-                            <span class="check-marker" aria-hidden="true">✓</span>
-                            <span>{{ sourcePath }}</span>
-                        </div>
+                    <div class="results__pattern">
+                        <span class="results__check-marker" aria-hidden="true">✓</span>
+                        <span>{{ sourcePath }}</span>
+                    </div>
                     }
                 </div>
             </mat-tab>
             <mat-tab label="Marcos de trabajo ({{ frameworkCount() }})">
-                <div class="tab-content pattern-list">
+                <div class="results__tab-content results__tab-content--frameworks">
                     @for (framework of analysisResults().structure.frameworks.slice(0, 10); track framework) {
-                        <div class="pattern-item">
-                            <span class="severity-marker" aria-hidden="true"></span>
-                            <span>{{ framework }}</span>
-                        </div>
+                    <div class="results__pattern">
+                        <span class="results__severity-marker" aria-hidden="true"></span>
+                        <span>{{ framework }}</span>
+                    </div>
                     }
                 </div>
             </mat-tab>
             <mat-tab label="Directorios ({{ directoriesCount() }})">
-                <div class="tab-content pattern-list">
+                <div class="results__tab-content results__tab-content--directories">
                     @for (directory of analysisResults().structure.directories.slice(0, 10); track directory) {
-                        <div class="pattern-item">
-                            <span class="pattern-index">{{ $index + 1 }}</span>
-                            <span>{{ directory }}</span>
-                        </div>
+                    <div class="results__pattern">
+                        <span class="results__pattern-index">{{ $index + 1 }}</span>
+                        <span>{{ directory }}</span>
+                    </div>
                     }
                 </div>
             </mat-tab>

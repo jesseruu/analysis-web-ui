@@ -15,48 +15,190 @@
   margin: 0 auto;
   padding: 72px 5vw 56px;
 
-  &__overlay { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, .7); }
-  &__toolbar { height: 72px; padding: 0 5vw; border-bottom: 1px solid var(--home-line); background: #fff; color: var(--home-ink); }
-  &__brand-name { font-size: 17px; font-weight: 700; letter-spacing: .02em; }
-  &__toolbar-spacer { flex: 1; }
-  &__header { max-width: 670px; margin-bottom: 46px;
-    &__title { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(42px, 6vw, 74px); font-weight: 400; line-height: 1.04; }
-    &__intro { max-width: 510px; margin: 20px 0 0; color: var(--home-muted); font-size: 17px; line-height: 1.6; }
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .7);
   }
-  &__options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-  &__card { min-height: 390px; border: 1px solid var(--home-line); border-radius: 5px; box-shadow: none; background: #fff;
-    &--github { border-top: 4px solid var(--home-teal); }
-    &--upload { border-top: 4px solid var(--home-coral); }
+
+  &__toolbar {
+    height: 72px;
+    padding: 0 5vw;
+    border-bottom: 1px solid var(--home-line);
+    background: #fff;
+    color: var(--home-ink);
   }
-  &__card-header { padding: 28px 28px 0; }
-  &__card-icon { display: grid; width: 48px; height: 48px; margin-right: 15px; place-items: center; border-radius: 50%;
-    &--github { background: var(--home-teal-soft); color: var(--home-teal); }
-    &--upload { background: #f7e4df; color: var(--home-coral); }
+  &__brand-name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .02em;
   }
-  &__card-title { font-size: 21px; font-weight: 700; }
-  &__card-subtitle { margin-top: 5px; color: var(--home-muted); }
-  &__card-content { display: flex; flex-direction: column; padding: 25px 28px 28px; }
-  &__card-description { min-height: 52px; margin: 0 0 22px; color: #46525b; font-size: 15px; line-height: 1.65; }
-  &__card-form { display: flex; flex-direction: column; flex: 1; }
-  &__card-input { display: flex; }
-  &__card-action { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: auto; }
-  &__action-button { min-height: 42px; white-space: nowrap; }
-  &__card--github &__action-button { --mdc-filled-button-container-color: var(--home-teal); --mdc-filled-button-label-text-color: #fff; }
-  &__card--upload &__action-button { border-color: var(--home-coral); color: var(--home-coral); }
+
+  &__toolbar-spacer {
+    flex: 1;
+  }
+
+  &__header {
+    max-width: 670px;
+    margin-bottom: 46px;
+
+    &__title {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(42px, 6vw, 74px);
+      font-weight: 400;
+      line-height: 1.04;
+    }
+
+    &__intro {
+      max-width: 510px;
+      margin: 20px 0 0;
+      color: var(--home-muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+  }
+
+  &__options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  &__card {
+    min-height: 390px;
+    border: 1px solid var(--home-line);
+    border-radius: 5px;
+    box-shadow: none;
+    background: #fff;
+
+    &--github {
+      border-top: 4px solid var(--home-teal);
+    }
+
+    &--upload {
+      border-top: 4px solid var(--home-coral);
+    }
+  }
+
+  &__card-header {
+    padding: 28px 28px 0;
+  }
+
+  &__card-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin-right: 15px;
+    place-items: center;
+    border-radius: 50%;
+
+    &--github {
+      background: var(--home-teal-soft);
+      color: var(--home-teal);
+    }
+
+    &--upload {
+      background: #f7e4df;
+      color: var(--home-coral);
+    }
+  }
+
+  &__card-title {
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  &__card-subtitle {
+    margin-top: 5px;
+    color: var(--home-muted);
+  }
+
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 28px 28px;
+  }
+
+  &__card-description {
+    min-height: 52px;
+    margin: 0 0 22px;
+    color: #46525b;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  &__card-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__card-input {
+    display: flex;
+  }
+
+  &__card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: auto;
+  }
+
+  &__action-button {
+    min-height: 42px;
+    white-space: nowrap;
+  }
+
+  &__card--github &__action-button {
+    --mdc-filled-button-container-color: var(--home-teal);
+    --mdc-filled-button-label-text-color: #fff;
+  }
+
+  &__card--upload &__action-button {
+    border-color: var(--home-coral);
+    color: var(--home-coral);
+  }
 }
 
 @media (max-width: 760px) {
-  .home { padding: 48px 20px 42px;
-    &__toolbar { padding: 0 20px; }
-    &__options { grid-template-columns: 1fr; }
+  .home {
+    padding: 48px 20px 42px;
+
+    &__toolbar {
+      padding: 0 20px;
+    }
+
+    &__options {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
 @media (max-width: 470px) {
   .home {
-    &__header__title { font-size: 44px; }
-    &__card-header, &__card-content { padding-right: 20px; padding-left: 20px; }
-    &__card-action { align-items: flex-start; flex-direction: column; }
-    &__action-button { width: 100%; }
+    &__header__title {
+      font-size: 44px;
+    }
+
+    &__card-header,
+    &__card-content {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    &__card-action {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    &__action-button {
+      width: 100%;
+    }
   }
 }

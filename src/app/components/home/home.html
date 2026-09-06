@@ -1,0 +1,65 @@
+@if (isLoading()) {
+    <div class="home__overlay"><mat-spinner diameter="60"></mat-spinner></div>
+}
+
+<mat-toolbar class="home__toolbar">
+    <span class="home__brand-name">Manager para analisis de codigo</span>
+    <span class="home__toolbar-spacer"></span>
+</mat-toolbar>
+
+<main class="home">
+    <header class="home__header">
+        <h1 class="home__header__title">What would you like<br />to understand?</h1>
+        <p class="home__header__intro">Elige una opcion y hazte una idea clara de su arquitectura, sus riesgos y sus
+            oportunidades</p>
+    </header>
+
+    <section class="home__options" aria-label="Choose an analysis source">
+        <mat-card class="home__card home__card--github">
+            <mat-card-header class="home__card-header">
+                <div mat-card-avatar class="home__card-icon home__card-icon--github" aria-hidden="true">
+                    <mat-icon>account_tree</mat-icon></div>
+                <mat-card-title class="home__card-title">Repositorios de GitHub</mat-card-title>
+                <mat-card-subtitle class="home__card-subtitle">Analiza un repositorio remoto</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="home__card-content">
+                <p class="home__card-description">Conecta un repositorio público y analiza su estructura, patrones,
+                    dependencias y estado de seguridad.</p>
+                <form class="home__card-form" [formGroup]="urlForm" (ngSubmit)="onUrlSelected()">
+                    <mat-form-field class="home__card-input">
+                        <mat-label>Enlace</mat-label>
+                        <input matInput type="url" formControlName="url" placeholder="https://github.com/test/test" />
+                        @if (urlForm.controls.url.hasError('pattern')) {
+                        <mat-error>Introduce una URL valida de repositorio GitHub.</mat-error>
+                        }
+                    </mat-form-field>
+                    <div class="home__card-action">
+                        <button mat-flat-button class="home__action-button" type="submit" [disabled]="urlForm.invalid">
+                            Analizar repositorio <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="home__card home__card--upload">
+            <mat-card-header class="home__card-header">
+                <div mat-card-avatar class="home__card-icon home__card-icon--upload" aria-hidden="true">
+                    <mat-icon>upload_file</mat-icon></div>
+                <mat-card-title class="home__card-title">Sube archivos</mat-card-title>
+                <mat-card-subtitle class="home__card-subtitle">Analiza localmente</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="home__card-content">
+                <p class="home__card-description">Sube un archivo ZIP si tu código fuente es privado, está en tu equipo
+                    o no está alojado en GitHub.</p>
+                <div class="home__card-action">
+                    <input #uploadInput class="home__action-upload" hidden type="file" accept=".zip"
+                        (change)="onFileSelected($event)" />
+                    <button mat-stroked-button class="home__action-button" type="button" (click)="uploadInput.click()">
+                        Selecciona archivo ZIP <mat-icon aria-hidden="true">cloud_upload</mat-icon>
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </section>
+</main>

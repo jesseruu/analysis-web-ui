@@ -85,10 +85,10 @@ describe('AnalysesResults', () => {
 
         const report = component.buildReport();
         expect(report).toContain('# analysis-mngr-main');
-        expect(report).toContain('## Analysis summary');
+        expect(report).toContain('## Resumen de analisis');
         expect(report).toContain('- Missing authentication');
         expect(report).toContain('- TypeScript: 100%');
-        expect(report).toContain('### Files');
+        expect(report).toContain('### Archivos');
     });
 
     it('should navigate home when no analysis is stored', async () => {
